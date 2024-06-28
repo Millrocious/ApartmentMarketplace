@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  apartment_marketplace_db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: apartment_marketplace_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5436:5432'
+    volumes:
+      - apartment_marketplace_db:/var/lib/postgresql/data
+
+volumes:
+  apartment_marketplace_db:
+    driver: local
