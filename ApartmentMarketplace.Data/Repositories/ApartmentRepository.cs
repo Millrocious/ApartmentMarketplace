@@ -1,9 +1,10 @@
 using ApartmentMarketplace.Domain.Entities;
+using ApartmentMarketplace.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApartmentMarketplace.Data.Repositories;
 
-public class ApartmentRepository
+public class ApartmentRepository : IApartmentRepository
 {
     private readonly ApplicationDbContext _dbContext;
 
@@ -12,7 +13,7 @@ public class ApartmentRepository
         _dbContext = dbContext;
     }
 
-    public ValueTask<Apartment?> GetApartmentIdAsync(int id) => _dbContext.Apartments.FindAsync(id);
+    public ValueTask<Apartment?> GetApartmentIdAsync(string id) => _dbContext.Apartments.FindAsync(id);
     
     public Task<List<Apartment>> GetAllApartmentsAsync() => _dbContext.Apartments.ToListAsync();
     
