@@ -13,13 +13,17 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services
         .ConfigureRepositories()
-        .ConfigureServices();
+        .ConfigureServices()
+        .ConfigureMappers();
 }
 
 var app = builder.Build();
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    
+    app.MapControllers();
+    app.UseExceptionHandler(_ => { });
 
     app.Run();
 }

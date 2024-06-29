@@ -25,9 +25,9 @@ public class ApartmentService : IApartmentService
         return _mapper.Map<ApartmentResponseDto>(apartment);
     }
 
-    public async Task<IList<ApartmentResponseDto>> GetAllApartmentsAsync()
+    public async Task<IList<ApartmentResponseDto>> GetAllApartmentsAsync(string? price, int? rooms)
     {
-        var apartments = await _apartmentRepository.GetAllApartmentsAsync();
+        var apartments = await _apartmentRepository.GetAllApartmentsAsync(price, rooms);
         
         return _mapper.Map<IList<ApartmentResponseDto>>(apartments);
     }

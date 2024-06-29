@@ -14,8 +14,28 @@ public class ApartmentRepository : IApartmentRepository
     }
 
     public ValueTask<Apartment?> GetApartmentIdAsync(string id) => _dbContext.Apartments.FindAsync(id);
-    
-    public Task<List<Apartment>> GetAllApartmentsAsync() => _dbContext.Apartments.ToListAsync();
+
+    public async Task<List<Apartment>> GetAllApartmentsAsync(string? price, int? rooms)
+    {
+        var query = _dbContext.Apartments.AsQueryable();
+
+        if (rooms.HasValue)
+        {
+            query = query.Where(a => a.Rooms == rooms.Value);
+        }
+
+        if (!string.IsNullOrEmpty(price))
+        {
+            query = price.ToLower() switch
+            {
+                "asc" => query.OrderBy(a => a.Price),
+                "desc" => query.OrderByDescending(a => a.Price),
+                _ => query
+            };
+        }
+
+        return await query.ToListAsync();
+    }
     
     public async Task<Apartment> AddApartmentAsync(Apartment apartment)
     {
