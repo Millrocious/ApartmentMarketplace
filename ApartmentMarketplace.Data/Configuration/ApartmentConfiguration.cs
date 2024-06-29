@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations.Schema;
 using ApartmentMarketplace.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -12,7 +11,8 @@ public class ApartmentConfiguration : IEntityTypeConfiguration<Apartment>
         builder.HasKey(a => a.Id);
 
         builder.Property(a => a.Id)
-            .ValueGeneratedNever();
+            .HasMaxLength(36)
+            .IsFixedLength();
         
         builder.Property(a => a.Name)
             .HasMaxLength(99)
