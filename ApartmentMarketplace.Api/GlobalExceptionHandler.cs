@@ -1,6 +1,8 @@
+using System.Net.Mime;
 using ApartmentMarketplace.Domain.Common.Models;
 using ApartmentMarketplace.Domain.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace ApartmentMarketplace.Api;
 
@@ -13,14 +15,14 @@ public class GlobalExceptionHandler : IExceptionHandler
     {
         var (statusCode, errorMessage) = exception switch
         {
-            NotFoundException notFoundException => (404, notFoundException.Message),
-            _ => (500, "Something went wrong")
+            NotFoundException notFoundException => (StatusCodes.Status404NotFound, notFoundException.Message),
+            _ => (StatusCodes.Status500InternalServerError, "Something went wrong")
         };
 
-        httpContext.Response.ContentType = "application/json";
+        httpContext.Response.ContentType = MediaTypeNames.Application.Json;
         httpContext.Response.StatusCode = statusCode;
 
-        var response = new ErrorResponse
+        ErrorResponse response = new()
         {
             StatusCode = statusCode,
             Message = errorMessage
