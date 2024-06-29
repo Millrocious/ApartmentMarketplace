@@ -1,3 +1,4 @@
+using ApartmentMarketplace.Domain.Common.Constants;
 using ApartmentMarketplace.Domain.Entities;
 using ApartmentMarketplace.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -28,8 +29,8 @@ public class ApartmentRepository : IApartmentRepository
         {
             query = price.ToLower() switch
             {
-                "asc" => query.OrderBy(a => a.Price),
-                "desc" => query.OrderByDescending(a => a.Price),
+                PriceOrderConstants.Asc => query.OrderBy(a => a.Price),
+                PriceOrderConstants.Desc => query.OrderByDescending(a => a.Price),
                 _ => query
             };
         }

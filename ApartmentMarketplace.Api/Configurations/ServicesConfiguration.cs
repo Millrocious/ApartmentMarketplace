@@ -7,8 +7,7 @@ public static class ServicesConfiguration
 {
     public static IServiceCollection ConfigureServices(this IServiceCollection services)
     {
-        services
-            .AddScoped<IApartmentService, ApartmentService>();
+        services.AddScoped<IApartmentService, ApartmentService>();
 
         return services;
     }

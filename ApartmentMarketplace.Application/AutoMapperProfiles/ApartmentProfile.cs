@@ -8,8 +8,7 @@ public class ApartmentProfile : Profile
 {
     public ApartmentProfile()
     {
-        CreateMap<Apartment, ApartmentRequestDto>()
-            .ReverseMap()
+        CreateMap<ApartmentRequestDto, Apartment>()
             .ForMember(o => o.Id, opt => opt.Ignore());
         
         CreateMap<Apartment, ApartmentResponseDto>();
