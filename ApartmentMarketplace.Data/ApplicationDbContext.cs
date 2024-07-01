@@ -9,7 +9,7 @@ public class ApplicationDbContext : DbContext
     {
     }
 
-    public DbSet<Apartment> Apartments { get; }
+    public DbSet<Apartment> Apartments { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
