@@ -23,10 +23,9 @@ public class ApartmentConfiguration : IEntityTypeConfiguration<Apartment>
         
         builder.Property(a => a.Price)
             .IsRequired();
-        
+
         builder.Property(a => a.Description)
-            .HasMaxLength(999)
-            .IsRequired();
+            .HasMaxLength(999);
         
         builder.ToTable(tb => tb.HasCheckConstraint("CK_Apartment_Rooms", "\"Rooms\" > 0"));
         builder.ToTable(tb => tb.HasCheckConstraint("CK_Apartment_Price", "\"Price\" > 0"));

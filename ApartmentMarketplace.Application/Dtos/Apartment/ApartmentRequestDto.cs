@@ -15,8 +15,7 @@ public class ApartmentRequestDto
     [Required]
     [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than 0")]
     public decimal Price { get; set; }
-
-    [Required]
+    
     [StringLength(998, ErrorMessage = "Description must be less than 999 characters")]
-    public required string Description { get; set; }
+    public string? Description { get; set; }
 }

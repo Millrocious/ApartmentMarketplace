@@ -6,5 +6,5 @@ public class Apartment
     public int Rooms { get; set; }
     public required string Name { get; set; }
     public decimal Price { get; set; }
-    public required string Description { get; set; }
+    public string? Description { get; set; }
 }
