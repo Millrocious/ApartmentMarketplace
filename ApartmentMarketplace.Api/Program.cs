@@ -28,6 +28,8 @@ var app = builder.Build();
 
 await app.UseDatabaseMigrations();
 
+app.Seed();
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
