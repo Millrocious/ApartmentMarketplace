@@ -26,6 +26,8 @@ builder.Services
 
 var app = builder.Build();
 
+await app.UseDatabaseMigrations();
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
